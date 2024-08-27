@@ -1,24 +1,28 @@
-name: Test and Deploy Flask API
+name: Test Flask API Artefacts
 
 on: [push]
 
 jobs:
-  build-and-run:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Check out repository code
       uses: actions/checkout@v2
 
+    - name: List directory contents for debugging
+      run: ls -R
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # Remplacez par la version de Python que vous utilisez, par exemple '3.8'
+        python-version: '3.x'  # Remplacez par la version de Python souhaitée
 
     - name: Install dependencies
       run: |
         cd Flask_API_artefacts
         pip install -r requirements.txt
+        pip install pytest
 
     - name: Run Flask application
       run: |
@@ -26,4 +30,7 @@ jobs:
         flask run --host=0.0.0.0 --port=5000 &
       working-directory: Flask_API_artefacts
 
-   
+    - name: Run API tests
+      run: |
+        pytest
+      working-directory: Flask_API_artefacts
