@@ -1,0 +1,32 @@
+name: Test Flask API Artifacts
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Remplacez par la version de Python souhaitée
+
+    - name: Install dependencies
+      run: |
+        cd FLASK_API_artifacts
+        pip install -r requirements.txt
+
+    - name: Run Flask application
+      run: |
+        export FLASK_APP=app.py
+        flask run --host=0.0.0.0 --port=5000 &
+      working-directory: FLASK_API_artifacts
+
+    # - name: Run API tests
+    #   run: |
+    #     pytest
+    #   working-directory: FLASK_API_artifacts
