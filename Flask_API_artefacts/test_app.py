@@ -28,4 +28,4 @@ def test_home():
 #     })
 #     assert response.status_code == 200
 #     data = json.loads(response.data)
-#     assert isinstance(data, float) or isinstance(data, int)  # Check for int or float
+#     assert isinstance(data, float) or isinstance(data, int)  
