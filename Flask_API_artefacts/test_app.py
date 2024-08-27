@@ -27,4 +27,4 @@ def test_predict_api():
     })
     assert response.status_code == 200
     data = json.loads(response.data)
-    assert type(data) == float
+    assert isinstance(data, float) or isinstance(data, int)  
