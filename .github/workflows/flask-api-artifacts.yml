@@ -1,4 +1,4 @@
-name: Test Flask API Artifacts
+name: Test Flask API Artefacts
 
 on: [push]
 
@@ -10,6 +10,9 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v2
 
+    - name: List directory contents for debugging
+      run: ls -R
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -17,16 +20,16 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd FLASK_API_artifacts
+        cd Flask_API_artefacts
         pip install -r requirements.txt
 
     - name: Run Flask application
       run: |
         export FLASK_APP=app.py
         flask run --host=0.0.0.0 --port=5000 &
-      working-directory: FLASK_API_artifacts
+      working-directory: Flask_API_artefacts
 
     # - name: Run API tests
     #   run: |
     #     pytest
-    #   working-directory: FLASK_API_artifacts
+    #   working-directory: Flask_API_artefacts
