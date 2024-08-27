@@ -22,7 +22,7 @@ jobs:
       run: |
         cd Flask_API_artefacts
         pip install -r requirements.txt
-        pip install pytest
+        
 
     - name: Run Flask application
       run: |
